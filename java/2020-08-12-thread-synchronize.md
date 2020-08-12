@@ -152,8 +152,58 @@ Final Value is 19511
 
 <br>
 
-이렇게 결과값에 멀어지게 나오는 이유는
+이렇게 결과값에 멀어지게 나오는 이유는 plus() 라는 메서드 
+때문인데, 이 메서드는 다른 쓰레드에서 작업하고 있다고 하더라도, 
+새로운 쓰레드에서 온 작업도 같이 처리하기 때문에 데이터가 꼬일 수 있다. 
+<br>
+<br>
 
+```java
+ public void plus(int value) {
+    amount += value;
+ }
+```
+<br>
+
+value 값에 amount값을 더하는 작업은 간단해 보여도 내부적으로는 복잡하다.
+<br>
+
+```
+amount = amount + value;
+```
+<br>
+
+연산은 우측 항의 결과를 좌측 항에 있는 amount에 담는다. 
+예를들면, 우측 항에 있는 amount가 1이고 value가 1일 경우, 
+정상적인 경우라면 좌측 항의 결과는 2가 되어야 한다. 
+<br>
+
+그런데 좌측항에 2을 치환하기 전에 다른 쓰레드가 들어와서 이 
+연산을 수행하려고 하기 때문에 아직 2가 되지 않은 상황의 `amount = 1` 
+값에서 계산을 진행하니 결론적으로 결과값이 이상하게 되는 것이다. 
+<br>
+<br>
+
+```java
+ public synchronized void plus(int value) {
+    amount += value;
+ }
+ public synchronized void minus(int value) {
+    amount -= value;
+ }
+```
+<br>
+
+이렇게 쓰레드에 안전하게 `synchronized` 를 선언해주면 현재 
+쓰레드가 끝날 때까지 기다렸다가 다음을 진행하기 때문에 결과는 항상 
+**20000** 이 나오게 된다.
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
