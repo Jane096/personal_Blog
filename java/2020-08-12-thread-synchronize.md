@@ -104,6 +104,65 @@ true라면 1을 더하고 그 반대라면 1을 빼는 연산을 수행한다.
 
 다음의 코드블럭과 같이 쓰레드를 실행시키는 `RunSync` 
 클래스를 살펴보자 
-  
+<br>
+<br>
+
+```java
+public class RunSync {
+  public static void main(String[] args) {
+    RunSync runSync = new RunSync();
+    runSync.runCalculate();
+  }
+ 
+  public void runCalculate() {
+    Calculator calc = new Calculator();
+    AmountThread thread1 = new AmountThread(calc, true); 
+    AmountThread thread2 = new AmountThread(calc, true); 
+    
+    thread1.start();
+    thread2.start();
+    
+    try{
+      thread1.join();
+      thread1.join();
+      System.out.println("Final value is "+calc.getAmount());
+      
+    } catch(InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+}
+```
+<br>
+
+최종적으로 `RunCalculate` 가 수행된 이후에는 
+20000이라는 결과값이 나와야 한다. 
+하지만
+<br>
+<br>
+
+```
+Final Value is 19511 
+```
+<br>
+
+이 결과값은 실행할 때 마다 계속 바뀔 것이다. 
+> 쓰레드에서 반복하는 횟수가 적으면 적을수록 결과값은 정답에 
+> 가깝겠지만, 반복하는 횟수가 많아질 수록 정답에서 점점 멀어지게 된다.
+
+<br>
+
+이렇게 결과값에 멀어지게 나오는 이유는
+
+
+
+
+
+
+
+
+
+
+
 
 
