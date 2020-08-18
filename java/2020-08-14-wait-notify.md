@@ -101,7 +101,23 @@ thread state(after join)=TERMINATED
 <br>
 
 
+## notifyAll()
 
+여러개의 객체가 `wait()` 상태라면 `synchronized block`
+에 `notify()` 를 객체의 갯수만큼 선언해서 풀어줘도 되지만
+`notifyAll()` 이라는 기능도 제공해준다. 
+<br>
+
+말그대로 `wait()` 상태의 모든 객체를 깨워준다는 의미로 
+여러개를 notify할 경우 `notifyAll()` 이 훨씬 좋은 방법이니 
+알아두도록 하자 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
