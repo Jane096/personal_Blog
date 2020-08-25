@@ -52,6 +52,7 @@ list.stream().filter(x -> x>10).count()
 ## 많이 사용하는 메서드 map()
 
 `map()`은 `filter()` 와 함께 중개연산에 속하는 기능이다. 
+이 기능은 데이터를 특정 데이터로 변환하는 역할을 한다. 
 다음과 같이 List가 있다고 가정해보자 
 <br>
 
@@ -97,6 +98,37 @@ intList.stream().map(x -> x*3).forEach(System.out::println);
 중간에 `map(x -> x*3)` 이라는 구문이 추가되었다. 이렇게 `map()`으로 변환이 되면 
 해당 스트림의 다음 구문에 있는 내용도 바뀌어야 한다. 
 즉, 이렇게 `map()`을 사용하면 스트림에서 처리하는 값들을 중간에 변경을 할 수가 있다. 
+<br>
+<br>
+
+`map()`은 꼭 숫자만이 아니라 객체로 변환이 가능하다. 
+<br>
+
+```java
+List<StudentDTO> studentList = new ArrayList<>();
+studentList.add(new studentDTO("요다", 43, 99, 10);
+studentList.add(new studentDTO("만두", 30, 71, 85);
+studentList.add(new studentDTO("건빵", 32, 81, 75);
+```
+<br>
+
+만약 이 `studentList`에서 이름만을 List로 빼내야 한다고 생각해보자.
+대부분 for문을 사용하겠지만, 스트림을 사용하면 아래와 같이 표현할 수 있다. 
+<br>
+<br>
+
+```java
+List<String> nameList = studentList.stream()
+     .map(student -> student.getName()).collect(Collectors.toList());
+```
+<br>
+
+중간에 이렇게 `map()` 을 사용해서 학생의 이름을 뽑아냈고, 그 결과를 `collect()` 메서드를 사용하여 
+`toList()`를 통해 List로 변환을 했다. 
+<br>
+
+`collect()`는 모든 값들을 한 곳으로 모으는 대표적인 **종단 연산** 이다. 그래서 이 메서드를 사용하면 
+위의 코드블럭처럼 한꺼번에 List로 변환이 가능하다. 
 
 
 
