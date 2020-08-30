@@ -52,7 +52,63 @@ private void createOptionalObjects() {
 세가지이다. Optional 클래스가 비어있는지 아닌지를 판단하는 
 메서드는 `isEmpty()` 와 `isPresent()`메서드가 있다. 
 
+<br>
+<br>
 
+```java
+private void checkOptionalData() {
+  System.out.println(Optional.of("present").isPresent()); //첫번째
+  System.out.println(Optional.ofNullable(null).isPresent()); //두번째
+}
+```
+<br>
+
+첫번째는 true를, 두번째는 false를 리턴하게 되어있다. 
+만약 값을 꺼내고 싶다면 `get()`, `orElseGet()`, `orElse()`, `orElseThrow()` 를 사용하면
+데이터를 리턴받을 수 있다. 
+
+<br>
+<br>
+
+```java
+private void getOptionalData(Optional<String> data) throws Exception {
+  String defaultValue = "default";
+  String result1 = data.get(); //가장 많이 사용되는 메서드, 데이터가 없다면 null 리턴
+  String result2 = data.orElse(defaultValue); //값이 없다면 이 메서드를 사용하여 기본값을 설정할 수 있다.
+  
+  Supplier<String> stringSupplier = new Supplier<String>() {
+    @Override
+    public String get() {
+      return "java!";
+    }
+  };
+  
+  String result3 = data.orElseGet(stringSupplier); //Supplier<T>라는 인터페이스를 활용하는 방법으로 orElseGet을 사용할 수 있다.
+  Supplier<Exception> ExceptionSupplier = new Supplier<Exception>() {
+    @Override 
+    public Exception get() {
+      return new Exception();
+    }
+  };
+  String result4 = data.orElseThrow(exceptionSupplier); //데이터가 없어 예외발생시키고 싶은 경우 사용할 수 있다.
+}
+```
+<br>
+
+`Supplier<T>` 는 람다 표현식에서 사용하려는 용도로 만들어졌고, `get()` 메서드가 선언이 되어 있다. 
+
+<br>
+<br>
+<br>
+
+## Optional이 필요한 경우는 언제일까?
+
+`Optional`클래스는 null처리보다 간편하게 하기 위해 만들어진 클래스이다. 
+개발자의 실수로 `NullPointerException`을 발생시킬 수 있는데 Optional을 이용하면 
+보다 간편하고 명확하게 처리가 가능해진다.
+
+> 하지만, Optional 클래스를 잘못 사용하면 `NoSuchElementException`이 
+> 발생할 수 있으니 조심하도록 하자
 
 
 
