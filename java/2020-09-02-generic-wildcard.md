@@ -80,6 +80,38 @@ public class CarWildcarSample {
 ```console
 Car name = Mustang
 ```
+<br>
+
+이번엔 callBusBondedWildcardMethod() 를 다음과 같이 추가하고 컴파일을 해보도록 하자
+<br>
+
+```java
+public void callBusWildcardMethod() {
+  WildcardGeneric<Bus> wildcard = new WildcardGeneric<Bus>();
+  wildcard.setWildcard(new Bus("6900"));
+  boundedWildcardMethod(wildcard);
+}
+```
+
+<br>
+
+이렇게 메서드를 추가해도 아래와 같이 결과가 잘 나오며 컴파일에 문제가 없다.
+<br>
+
+```console
+Bus name = 6900
+```
+
+<br>
+
+이와 같이 **? extends type** 과 같은 것을 **Bounded Wildcard** 라고 부른다. 
+Bound 라는 영어의미는 "경계" 라고 해석할 수 있어, 매개 변수로 넘어오는 제너릭의 
+**타입의 경계**를 지정한다고 생각하면 된다. 
+
+<br>
+
+하지만 wildcard와 마찬가지로 Bounded Wildcard 또한 값을 할당할 수 없으니 꼭 
+조회용 매개 변수로만 사용해야 한다.
 
 <br>
 <br>
