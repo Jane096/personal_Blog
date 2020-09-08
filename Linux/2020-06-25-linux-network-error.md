@@ -24,12 +24,16 @@ last_modified_at: 2020-06-25
 ```bash
 ping 8.8.8.8 
 ```
+
 <br>
 
 또 다른 방법으로는 위의 코드를 입력하는 것인데, 밑의 사진처럼 출력되지 않는다면 이것 또한 
 네트워크 연결 오류로 볼 수 있다. 
+
 <br>
+
 ![ping테스트]({{ site.url }}{{ site.baseurl }}/assets/linuxnetwork/pingtest.PNG){: .align-center}
+
 <br>
 <br>
 
@@ -39,25 +43,37 @@ ping 8.8.8.8
 ```bash
 ip addr
 ```
+
 ![ip addr 콘솔]({{ site.url }}{{ site.baseurl }}/assets/linuxnetwork/ipaddr.PNG){: .align-center}
+
 <br>
+
 **2.eth0**이라는 부분을 잘 확인하자
+
 <br>
 <br>
 
 ```bash
 ifup
 ```
+
 <br>
+
 ![연결성공]({{ site.url }}{{ site.baseurl }}/assets/linuxnetwork/ifup.PNG){: .align-center}
+
 <br>
+
 **연결이 활성화 되었습니다** 메세지가 잘 뜨는지 확인하도록 한다.
+
 <br>
 <br>
 
-다시 처음 처럼 **ping 8.8.8.8**을 입력하여 밑의 사진처럼 잘 출력되는지 확인해보자 
+다시 처음 처럼 **ping 8.8.8.8**을 입력하여 밑의 사진처럼 잘 출력되는지 확인해보자
+
 <br>
+
 ![다시 ping test]({{ site.url }}{{ site.baseurl }}/assets/linuxnetwork/pingtest.PNG){: .align-center}
+
 <br>
 <br>
 <br>
